@@ -7,9 +7,8 @@ This project implements a Sentiment Analysis model using a neural network archit
 
 Clone the repository and install the necessary dependencies using `pip`.
 
-```bash
-git clone <repository-url>
-cd <project-directory>
+```python
+git clone https://github.com/Olamide643/Sentiment-Analysis-
 pip install -r requirements.txt
 ```
 
