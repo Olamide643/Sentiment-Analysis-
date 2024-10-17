@@ -80,6 +80,9 @@ Here’s a quick example to demonstrate how the sentiment classification works:
 
 Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to modify. Make sure to update tests as appropriate to ensure everything works smoothly.
 
-## License
+## Sample 
 
-This project is licensed under the [MIT License](https://choosealicense.com/licenses/mit/).
+<p align="center">
+  <img src="/static/images/robot.jpg" width="350" title="hover text">
+  <img src="you/static/images/robot.jpg" width="350" alt="accessibility text">
+</p>
