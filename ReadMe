@@ -1,69 +1,67 @@
-Sentiment Analysis GRU Model Implementation
+# Sentiment Analysis GRU Model Implementation
 
-Summary:
-This commit introduces the implementation of a sentiment analysis model using a neural network architecture built with Keras. The model leverages word embeddings and Gated Recurrent Units (GRU) to classify text into binary sentiment categories.
+## Overview
+This project implements a **Sentiment Analysis** model using a neural network architecture built with **Keras**. The model classifies text into binary sentiment categories (positive or negative) by leveraging word embeddings and **Gated Recurrent Units (GRU)** layers. The app provides a web interface for real-time sentiment analysis using **Flask**.
 
-Key Features:
-Tokenizer Initialization:
+---
 
-A Tokenizer object is created with a vocabulary size of 10,000 most frequent words (num_words = 10000).
-The tokenizer is fitted on the input training data (X) using fit_on_texts(X), converting text data into sequences of integers.
-Model Architecture:
+## Key Features
 
-Embedding Layer:
-The first layer is an Embedding layer, which transforms word indices into dense vectors of fixed size (embedding_size = 20).
-Input dimension is set to 20,000 to accommodate the vocabulary size, and the input length is len_max (the maximum sequence length of the input).
-GRU Layers:
-The model uses three GRU layers with progressively smaller unit sizes:
-The first GRU layer has 16 units and returns sequences (return_sequences=True).
-The second GRU layer has 8 units and also returns sequences.
-The third GRU layer has 4 units and does not return sequences, making it the final GRU layer.
-Dense Layer:
-A fully connected Dense layer with a single output neuron is added, using the sigmoid activation function for binary classification.
-Model Compilation:
+### Tokenizer Initialization
+- **Tokenizer:** A `Tokenizer` object is initialized with a vocabulary size of **10,000** most frequent words.
+- **Text Preprocessing:** The tokenizer is fitted on the input data (`X`) and converts the text into integer sequences using `fit_on_texts(X)`.
 
-The model is compiled with:
-Loss Function: binary_crossentropy to handle the binary classification task.
-Optimizer: Adam optimizer with a learning rate (lr) of 0.001.
-Evaluation Metric: Accuracy (metrics=['accuracy']) to monitor model performance.
-Model Summary:
+### Model Architecture
+1. **Embedding Layer**
+   - Transforms word indices into dense vectors with an embedding size of **20**.
+   - Input dimension set to **20,000** to accommodate the vocabulary size.
+   - Input sequence length is defined by `len_max`.
 
-A detailed summary of the model architecture is provided using Model.summary(), which displays the layer-wise structure and parameter counts.
-Additional Information:
-Embedding and Sequence Processing:
-The Embedding layer allows the model to learn word representations in a low-dimensional space, which is passed through a series of GRU layers to capture sequential dependencies in the text data.
-GRU Layers:
-The use of GRU layers enables the model to handle long-term dependencies in the data, making it suitable for text classification tasks where word order and context are important.
-This model serves as the foundation for sentiment analysis and is designed for binary classification tasks, such as distinguishing between positive and negative sentiments in text data.
+2. **GRU Layers**
+   - The model includes three **GRU** layers with decreasing unit sizes:
+     - **First GRU Layer:** 16 units, returns sequences.
+     - **Second GRU Layer:** 8 units, returns sequences.
+     - **Third GRU Layer:** 4 units, does not return sequences (final GRU layer).
 
-Testing
-Key Features:
-Model Loading:
+3. **Dense Layer**
+   - A fully connected **Dense** layer with **1 output neuron** and a sigmoid activation function for binary classification.
 
-The pre-trained sentiment analysis model (Model.h5) is loaded using Keras' load_model function.
-A tokenizer is loaded from a pickle file (tokenize.pickle) to preprocess the input text into sequences for prediction.
-Flask Web Application:
+### Model Compilation
+- **Loss Function:** `binary_crossentropy` for binary classification.
+- **Optimizer:** Adam optimizer with a learning rate of **0.001**.
+- **Metric:** Accuracy to evaluate model performance.
 
-Home Route (/):
-Renders a basic HTML template (Home.html) where users can input their text for classification.
-Prediction Route (/predict):
-Receives POST requests with user input from the form.
-The input text is tokenized, padded to a fixed length, and fed into the loaded model for prediction.
-If the model's prediction exceeds a threshold of 0.5, the text is classified as a "Positive Review," otherwise it is labeled as a "Negative Review."
-The result and the prediction probability (as a percentage) are displayed on the result page.
-Tokenization and Padding:
+---
 
-The input text is tokenized using the pre-loaded tokenizer, which converts the text into sequences of integers.
-Padding is applied to ensure the input sequence matches the expected length for the model (241 tokens).
-Model Prediction:
+## Flask Web Application
 
-The model outputs a prediction between 0 and 1, representing the probability of the text being positive.
-The classification is determined based on a threshold of 0.5, with results displayed along with the confidence percentage.
-Additional Information:
-Templates:
-A simple Home.html template is used for input and output.
+### Home Route (`/`)
+- Renders a basic HTML template (`Home.html`) where users can input text for classification.
 
+### Prediction Route (`/predict`)
+- Receives **POST** requests with user input from the form.
+- The input text is tokenized, padded, and fed into the model for prediction.
+- If the model's prediction is greater than **0.5**, the text is classified as **Positive**, otherwise **Negative**.
+- The classification result and the prediction probability are displayed on the result page.
 
-Running the App:
-The Flask app runs locally using app.run(), enabling easy access and interaction with the model via the web interface.
-This setup provides a user-friendly interface to interact with the sentiment analysis model in real time.
+---
+
+## Model Prediction Flow
+
+### Tokenization & Padding
+- The input text is tokenized and converted into integer sequences using the pre-trained tokenizer.
+- **Padding** ensures that all sequences match the expected input length of **241 tokens**.
+
+### Prediction Output
+- The model outputs a value between **0 and 1**, representing the probability of the text being positive.
+- A threshold of **0.5** is used to classify the input as either **Positive** or **Negative**, and the confidence percentage is displayed.
+
+---
+
+## How to Run the App
+
+1. Clone the repository and install the necessary dependencies:
+   ```bash
+   git clone <repository-url>
+   cd <project-directory>
+   pip install -r requirements.txt
