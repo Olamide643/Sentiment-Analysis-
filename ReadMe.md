@@ -83,6 +83,5 @@ Pull requests are welcome! For major changes, please open an issue first to disc
 ## Sample 
 
 <p align="center">
-  <img src="/static/images/robot.jpg" width="350" title="hover text">
-  <img src="you/static/images/robot.jpg" width="350" alt="accessibility text">
+  <img src="/static/images/Demo.gif" width="350" title="hover text">
 </p>
